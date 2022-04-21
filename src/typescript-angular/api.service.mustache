@@ -1,7 +1,6 @@
 {{>licenseInfo}}
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { ShareHttpClient, IShareHttpOptions } from "../../services/share-http-client.service"
 import { Injectable }                      from '@angular/core';
 import { Observable }                                        from 'rxjs';
 
@@ -35,7 +34,7 @@ export class {{classname}} implements {{classname}}Interface {
 export class {{classname}} {
 {{/withInterfaces}}
 
-    constructor(protected {{#useHttpClient}}httpClient: ShareHttpClient{{/useHttpClient}}{{^useHttpClient}}http: Http{{/useHttpClient}}) {}
+    constructor(protected {{#useHttpClient}}httpClient: any{{/useHttpClient}}{{^useHttpClient}}http: Http{{/useHttpClient}}) {}
 
 {{#operation}}
     /**
@@ -45,7 +44,7 @@ export class {{classname}} {
      {{/allParams}}
      */
     {{#useHttpClient}}
-    public {{nickname}}({{#allParams}}{{^isConstEnumParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/isConstEnumParam}}{{/allParams}}options?: IShareHttpOptions ): Observable<{{#returnType}}{{{returnType}}}{{#isResponseTypeFile}}|undefined{{/isResponseTypeFile}}{{/returnType}}{{^returnType}}any{{/returnType}}> {
+    public {{nickname}}({{#allParams}}{{^isConstEnumParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/isConstEnumParam}}{{/allParams}}options?: any ): Observable<{{#returnType}}{{{returnType}}}{{#isResponseTypeFile}}|undefined{{/isResponseTypeFile}}{{/returnType}}{{^returnType}}any{{/returnType}}> {
     {{/useHttpClient}}
     {{^useHttpClient}}
     public {{nickname}}WithHttpInfo({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
