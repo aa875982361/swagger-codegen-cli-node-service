@@ -28,7 +28,7 @@
  // 端口
  const port = Number(process.env.ENV_SERVER_PORT || "8080")
  // 缓存文件目录
- const cachePath = path.join(__dirname, "./cache")
+ const cachePath = path.join(__dirname, "../cache")
  // 压缩文件的根目录
  const zipBaseFileDir = path.join(cachePath, "zip")
  // 编译出来的文件夹目录
