@@ -1,0 +1,89 @@
+{{>licenseInfo}}
+/* tslint:disable:no-unused-variable member-ordering */
+
+import { ShareHttpClient, IShareHttpOptions } from "../../services/share-http-client.service"
+import { Injectable }                      from '@angular/core';
+import { Observable }                                        from 'rxjs';
+
+{{#imports}}
+import { {{classname}} } from '../{{filename}}';
+{{/imports}}
+
+{{#withInterfaces}}
+import { {{classname}}Interface }                            from './{{classFilename}}Interface';
+{{/withInterfaces}}
+
+{{#operations}}
+
+{{#description}}
+/**
+ * {{&description}}
+ */
+{{/description}}
+{{^providedInRoot}}
+@Injectable()
+{{/providedInRoot}}
+{{#providedInRoot}}
+@Injectable({
+  providedIn: 'root'
+})
+{{/providedInRoot}}
+{{#withInterfaces}}
+export class {{classname}} implements {{classname}}Interface {
+{{/withInterfaces}}
+{{^withInterfaces}}
+export class {{classname}} {
+{{/withInterfaces}}
+
+    constructor(protected {{#useHttpClient}}httpClient: ShareHttpClient{{/useHttpClient}}{{^useHttpClient}}http: Http{{/useHttpClient}}) {}
+
+{{#operation}}
+    /**
+     * {{summary}}
+     * {{notes}}
+     {{#allParams}}* @param {{paramName}} {{description}}
+     {{/allParams}}
+     */
+    {{#useHttpClient}}
+    public {{nickname}}({{#allParams}}{{^isConstEnumParam}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/isConstEnumParam}}{{/allParams}}options?: IShareHttpOptions ): Observable<{{#returnType}}{{{returnType}}}{{#isResponseTypeFile}}|undefined{{/isResponseTypeFile}}{{/returnType}}{{^returnType}}any{{/returnType}}> {
+    {{/useHttpClient}}
+    {{^useHttpClient}}
+    public {{nickname}}WithHttpInfo({{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}, {{/allParams}}extraHttpRequestParams?: RequestOptionsArgs): Observable<Response> {
+    {{/useHttpClient}}
+{{#allParams}}
+{{#required}}
+        {{#isConstEnumParam}}
+        let {{paramName}} = {{{dataType}}};
+        {{/isConstEnumParam}}
+        {{^isConstEnumParam}}
+        if ({{paramName}} === null || {{paramName}} === undefined) {
+            throw new Error('Required parameter {{paramName}} was null or undefined when calling {{nickname}}.');
+        }
+        {{/isConstEnumParam}}
+{{/required}}
+{{/allParams}}
+    
+        let data = {} 
+{{#hasQueryParams}}
+    {{#queryParams}}
+        data["{{baseName}}"] = {{baseName}}
+    {{/queryParams}}
+{{/hasQueryParams}}
+{{#bodyParam}}
+        data["{{baseName}}"] = {{baseName}}
+{{/bodyParam}}
+
+{{#hasFormParams}}
+    {{#formParams}}
+        data["{{baseName}}"] = {{baseName}}
+    {{/formParams}}
+{{/hasFormParams}}
+
+{{#useHttpClient}}
+        return this.httpClient.{{httpMethod}}{{^isResponseFile}}<{{#returnType}}{{{returnType}}}{{#isResponseTypeFile}}|undefined{{/isResponseTypeFile}}{{/returnType}}{{^returnType}}any{{/returnType}}>{{/isResponseFile}}(`{{{path}}}`, data, options);
+{{/useHttpClient}}
+    }
+
+{{/operation}}
+}
+{{/operations}}
