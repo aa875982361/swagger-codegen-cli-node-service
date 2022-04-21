@@ -27,6 +27,8 @@
  app.use(bodyParser.json());
  // 端口
  const port = Number(process.env.ENV_SERVER_PORT || "8080")
+ const swaggerCodegenCliFilePath = path.join(__dirname, "./swagger-codegen-cli-2.4.5.jar")
+ const swaggerCodegenTemplatePath = path.join(__dirname, "./typescript-angular")
  // 缓存文件目录
  const cachePath = path.join(__dirname, "../cache")
  // 压缩文件的根目录
@@ -206,7 +208,7 @@
   */
  function genFileBySwaggerJsonFilePath(swaggerJsonFilePath, targetFileDir){
    return new Promise((resolve, reject) => {
-     const commandStr = `java -jar ./swagger-codegen-cli-2.4.5.jar generate -i ${swaggerJsonFilePath} -l typescript-angular  -t ./typescript-angular -o ${targetFileDir}`
+     const commandStr = `java -jar ${swaggerCodegenCliFilePath} generate -i ${swaggerJsonFilePath} -l typescript-angular  -t ${swaggerCodegenTemplatePath} -o ${targetFileDir}`
      console.log("开始执行swagger codegen 命令", commandStr);
      try {
        // 3.0 的版本需要加 --template-engine mustache 
