@@ -35,3 +35,18 @@ npm run start
 使用到的环境变量：
 1. ENV_MAX_TASK_LEN 最大并发任务数 默认2
 2. ENV_SERVER_PORT 端口 默认8080
+
+## 项目测试
+### 启动测试 swagger-ui 服务
+```
+npm run swagger-ui-services
+```
+
+通过`http://localhost:8081/docs`即可访问swagger-ui
+
+### 运行测试代码
+```
+npm run test
+```
+查看 example/ts-project/normal 下的swagger.json 是否符合预期
+以及查看build文件夹内的build-xxxxx/api/default.service.ts文件是否符合预期
