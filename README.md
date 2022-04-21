@@ -50,3 +50,6 @@ npm run test
 ```
 查看 example/ts-project/normal 下的swagger.json 是否符合预期
 以及查看build文件夹内的build-xxxxx/api/default.service.ts文件是否符合预期
+
+## 参考资料
+1. [swagger-codegen](https://github.com/swagger-api/swagger-codegen)
