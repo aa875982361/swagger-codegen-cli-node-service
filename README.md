@@ -1,7 +1,7 @@
 # swagger-code-cli-node-service
 
 ## 项目介绍
-本项目的目的是将swagger.api.doc的json文件转化为typescript类型的service，便于代码编写，减少接口比对的工作量。网上不少相同的项目，本项目是基于swagger-codegen 做的二次开发，主要工作是把swagger-codegen 做成一个node服务，后续只需要调用服务，即可转换。
+本项目的目的是将swagger.api.doc的json文件转化为typescript类型的api.service，便于代码编写，减少接口比对的工作量。网上不少相同的项目，本项目是基于swagger-codegen 做的二次开发，主要工作是把swagger-codegen 做成一个node服务，后续只需要调用服务，即可转换。
 
 ## 项目优势
 1. 不需要开发人员本地安装环境，只需要调用服务
