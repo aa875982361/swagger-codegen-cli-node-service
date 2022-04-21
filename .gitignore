@@ -3,3 +3,4 @@ example/swagger-ui-service/node_modules
 cache
 .DS_Store
 example/ts-project/normal
+example/swagger-ui-service/package-lock.json
